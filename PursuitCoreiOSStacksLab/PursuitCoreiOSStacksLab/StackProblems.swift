@@ -4,14 +4,34 @@ import Foundation
 //Find the largest integer in a Stack of Ints
 
 func largest(stack: Stack<Int>) -> Int {
-    return 0
+    var stackArr = stack
+    var largestNumber = Int()
+    
+    while !stackArr.isEmpty() {
+        if let currentNumber = stackArr.pop() {
+            if currentNumber > largestNumber {
+                largestNumber = currentNumber
+            }
+        }
+    }
+    
+    return largestNumber
 }
 
 //Problem Two:
 //Find the sum of a Stack of Ints
 
 func sum(stack: Stack<Int>) -> Int {
-    return 0
+    var sum = Int()
+    var stackArr = stack
+    while !stackArr.isEmpty() {
+        let currentNumber = stackArr.pop()
+        if let currentNumber = currentNumber {
+            sum += currentNumber
+        }
+    }
+    
+    return sum
 }
 
 //Problem Three:
@@ -34,7 +54,15 @@ func sum(stack: Stack<Int>) -> Int {
  */
 
 func reverse<T>(stack: Stack<T>) -> Stack<T> {
-    return Stack<T>()
+    
+    var newStack = Stack<T>()
+    var currentStack = stack
+    while !stack.isEmpty() {
+        let currentNumber = stack.pop()
+        newStack.push(element: currentNumber!)
+    }
+    return newStack
+    
 }
 
 
@@ -42,7 +70,16 @@ func reverse<T>(stack: Stack<T>) -> Stack<T> {
 //Determine if two stacks are equal
 
 func equalStacks<T: Equatable>(stackOne: Stack<T>, stackTwo: Stack<T>) -> Bool {
-    return false
+    var stack1 = stackOne
+    var stack2 = stackTwo
+    while !stack1.isEmpty() && stack2.isEmpty() {
+        let value1 = stack1.pop()
+        let value2 = stack2.pop()
+        if value1 != value2 {
+            return false
+        }
+    }
+    return stack1.isEmpty() && stack2.isEmpty()
 }
 
 
@@ -76,4 +113,7 @@ func isBalanced(str: String) -> Bool {
 func convertToBinary(_ num: Int) -> String {
     return ""
 }
+
+
+
 
