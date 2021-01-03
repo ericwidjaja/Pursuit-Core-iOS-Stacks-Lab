@@ -14,7 +14,6 @@ func largest(stack: Stack<Int>) -> Int {
             }
         }
     }
-    
     return largestNumber
 }
 
@@ -26,8 +25,9 @@ func sum(stack: Stack<Int>) -> Int {
     var stackArr = stack
     while !stackArr.isEmpty() {
         let currentNumber = stackArr.pop()
-        if let currentNumber = currentNumber {
-            sum += currentNumber
+        print(currentNumber)
+        if let currentNumb = currentNumber {
+            sum += currentNumb
         }
     }
     
@@ -62,32 +62,55 @@ func reverse<T>(stack: Stack<T>) -> Stack<T> {
         newStack.push(element: currentNumber!)
     }
     return newStack
-    
 }
 
 
 //Problem Four:
 //Determine if two stacks are equal
 
+
 func equalStacks<T: Equatable>(stackOne: Stack<T>, stackTwo: Stack<T>) -> Bool {
     var stack1 = stackOne
     var stack2 = stackTwo
-    while !stack1.isEmpty() && stack2.isEmpty() {
-        let value1 = stack1.pop()
-        let value2 = stack2.pop()
-        if value1 != value2 {
+    while !stack1.isEmpty() {
+        let valueOne = stack1.pop()
+        let valueTwo = stack2.pop()
+        if valueOne != valueTwo {
             return false
         }
     }
-    return stack1.isEmpty() && stack2.isEmpty()
+    if stack2.isEmpty() && stack1.isEmpty() {
+        return true
+    } else {
+        return false
+    }
 }
 
 
 //Problem Five:
 //Write a function that pushes a new element to the bottom of a Stack
+// newElement = 100
+/* old stack =  1
+                2
+                3
+ 
+    new stack = 100
+                1
+                2
+                3
+ */
 
 func pushBottom<T>(stack: Stack<T>, newElement: T) -> Stack<T> {
-    return Stack<T>()
+    var reversedStack = reverse(stack: stack)
+    var newStack = Stack<T>()
+    newStack.push(element: newElement)
+    while !reversedStack.isEmpty() {
+        let currentValue = reversedStack.pop()
+        if let newValue = currentValue {
+            newStack.push(element: newValue)
+        }
+    }
+    return newStack
 }
 
 //Problem Six:
